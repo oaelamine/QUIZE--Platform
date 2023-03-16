@@ -1,0 +1,16 @@
+.quiz-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.quiz-area .box {
+    display: flex; 
+	align-items: center; 
+	justify-content: center;
+}
+.quiz-area .box img {
+    width: 200px;
+    box-shadow: 0 0 10px #ddd;
+}

@@ -1,0 +1,107 @@
+/* --------------------------------------START VARIABLES-------------------------------------- */
+:root {
+    --yellow: #faaf4f;
+    --blue: #1b61d2;
+    --night-blue: #5085a5;
+    --dark-blue: #31708e;
+    --olive-green: #687864;
+    --light-blue: #8fc1e3;
+    --gray-white: #f7f9fb;
+}
+/* --------------------------------------END VARIABLES-------------------------------------- */
+/* --------------------------------------START FONT-------------------------------------- */
+@font-face {
+    src: url(OpenSans-Italic-VariableFont_wdth,wght.ttf);
+    font-family: Cairo;
+}
+body {
+    font-family: Cairo;
+    scroll-behavior: smooth;
+    min-height: 50vh;
+}
+/* --------------------------------------END FONT-------------------------------------- */
+/* --------------------------------------START SCROLLBAR STYLE-------------------------------------- */
+/* START SCROLLBAR STYLE "Chrome"  */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #007cc3;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #1d4670;
+}
+/* END SCROLLBAR STYLE "Chrome"  */
+/* END SCROLLBAR STYLE "Fierfox"  */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #007cc3 white;
+}
+/* END SCROLLBAR STYLE "Fierfox"  */
+/* --------------------------------------START SCROLLBAR STYLE-------------------------------------- */
+/* --------------------------------------START DEFAULT SETTING-------------------------------------- */
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+a:focus {
+    outline: none;
+}
+/* --------------------------------------END DEFAULT SETTING-------------------------------------- */
+/* --------------------------------------START MAIN_PAGE SETTING-------------------------------------- */
+.main_page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../imgs/bg_3.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image 2s;
+}
+
+.main_page .content {
+    text-align: center;
+}
+.content .text {
+    color: white;
+}
+.content .text span {
+    display: block;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+.content .text h1 {
+    margin: 0 0 3rem;
+    font-size: 5rem;
+}
+.content .text a {
+    padding: 1rem 2rem;
+    border: 2px solid var(--yellow);
+    border-radius: 6px;
+    color: var(--yellow);
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    transition: 0.3s;
+}
+.content .text a:hover {
+    background-color: var(--yellow);
+    color: white;
+    border-color: transparent;
+}
+/* --------------------------------------END MAIN_PAGE  SETTING-------------------------------------- */
