@@ -2,7 +2,7 @@
 let quizeArea = document.querySelector('.quiz-area');
 
 //set 
-let curent, other
+let curent, other;
 let imgCount = 5;
 
 //create the box and the imgs
@@ -60,6 +60,7 @@ create()
 let submit = document.querySelector(".submit-button");
 let divs = document.querySelectorAll(".box");
 let allImg = document.querySelectorAll("img");
+let quizApp = document.querySelector(".quiz-app")
 
 
 allImg.forEach(letter => {
@@ -71,7 +72,7 @@ allImg.forEach(letter => {
 //drag Functions
 
 function dragStart() {
-    curent = this;
+    curent = this;;
 }
 
 function dragOver(e) {
@@ -85,13 +86,21 @@ function dragEnter(e) {
 function dragLeave() {}
 
 function dragDrop() {
-    other = this
+    other = this;
 }
 
 function dragEnd() {
+
+    //selecting src's
     let currentImg = curent.src;
     let otherImg = other.src;
-    [curent.src, other.src] = [otherImg, currentImg]
+
+    //selecting id's
+    let currentID = curent.id;
+    let otherID = other.id;
+
+    [curent.src, other.src] = [otherImg, currentImg];
+    [curent.id, other.id] = [otherID, currentID]
 
     //ree adding id
 /*     allImg.forEach(letter => {
@@ -123,14 +132,30 @@ function random(arr) {
 
 function submitFunction() {
 
+    submit.remove()
+
     //check the id of the img and the id of the div
     for (const img of allImg) {
+
         if (parseInt(img.id) == parseInt(img.parentElement.id)) {
             img.parentElement.style.backgroundColor = "green";
+
         } else {
             img.parentElement.style.backgroundColor = "red";
 
         }
+    }
+
+    //reSET button
+
+    let restart = document.createElement('button');
+    restart.className = "submit-button";
+    restart.innerText = "restart"
+
+    quizApp.appendChild(restart);
+
+    restart.onclick = function () {
+        location.reload();
     }
 
 }
