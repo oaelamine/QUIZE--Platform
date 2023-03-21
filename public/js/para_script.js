@@ -28,7 +28,10 @@ function submitFunction() {
     //chesk the aners
     for ( const input of inputs ) {
         if (input.value === input.dataset.text) {
+            input.style.color = "green";
             score++
+        } else {
+            input.style.color = "red";
         }
     }
 
@@ -38,8 +41,8 @@ function submitFunction() {
 
 function showResults(count) {
 
-    quizArea.remove();
-    form.remove();
+/*     quizArea.remove();
+    form.remove(); */
     submit.remove();
 
 

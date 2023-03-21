@@ -1,35 +1,39 @@
 //selecting elements
-let quizeArea = document.querySelector('.quiz-area')
+let quizeArea = document.querySelector('.quiz-area');
 
 //set 
 let curent, other
 let imgCount = 5;
 
 //create the box and the imgs
-window.onload = function() {
+//window.onload = 
+function create() {
     let imgs = [];
 
     for (let i = 1; i <= imgCount; i++) {
         imgs.push(i.toString());
     }
 
-    
     imgs.reverse();
+
 
     //random
     imgs =  random(imgs);
 
-    for (let i = 0; i < imgCount; i++) {
-    
+
+
+    for (let i = 1; i <= imgCount; i++) {
+
         //create the div 
         let div = document.createElement("div");
         div.className = "box";
+        div.id = i;
     
         //create img
         let img = document.createElement("img");
-        img.src = `public/imgs/${imgs[i]}.svg`;
+        img.src = `public/imgs/${imgs[i - 1]}.svg`;
         img.alt = "img";
-        img.draggable = "tru";
+        img.draggable = "true";
 
         //add events
         img.addEventListener('dragstart', dragStart);
@@ -46,6 +50,23 @@ window.onload = function() {
         quizeArea.appendChild(div);
     }
 }
+
+
+//trigger the create function 
+create()
+
+
+//select elements
+let submit = document.querySelector(".submit-button");
+let divs = document.querySelectorAll(".box");
+let allImg = document.querySelectorAll("img");
+
+
+allImg.forEach(letter => {
+    letter.id = `${letter.src.slice(-5, -4)}i`
+})
+
+
 
 //drag Functions
 
@@ -68,10 +89,14 @@ function dragDrop() {
 }
 
 function dragEnd() {
-
     let currentImg = curent.src;
     let otherImg = other.src;
     [curent.src, other.src] = [otherImg, currentImg]
+
+    //ree adding id
+/*     allImg.forEach(letter => {
+        letter.id = `${letter.src.slice(-5, -4)}i`
+    }) */
 }
 
 
@@ -94,5 +119,23 @@ function random(arr) {
 }
 
 
+//check funtion
+
+function submitFunction() {
+
+    //check the id of the img and the id of the div
+    for (const img of allImg) {
+        if (parseInt(img.id) == parseInt(img.parentElement.id)) {
+            img.parentElement.style.backgroundColor = "green";
+        } else {
+            img.parentElement.style.backgroundColor = "red";
+
+        }
+    }
+
+}
 
 
+//addEventListners
+
+submit.addEventListener('click', submitFunction)
