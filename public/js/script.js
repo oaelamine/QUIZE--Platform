@@ -15,6 +15,6 @@ function changBg() {
 }
 
 //TRIGGER THE FUNCTION WITH setInterval
-setInterval(changBg, 5000);
+/* setInterval(changBg, 5000); */
 
 //CHANGING BACKGROUNG ANIMATHION ################################################################# END

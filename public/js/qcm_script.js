@@ -11,41 +11,41 @@ const htmlQuestions = [
   (q2 = {
     question: "Which is used to read an HTML page and render it?",
     anser1: "Web server",
-    anser2: "Web network",
+    anser2: "Web browser",
     anser3: "Web matrix",
-    anser4: "Web browser",
+    anser4: "Web network",
     anserTrue: "Web browser",
   }),
   (q3 = {
     question: "Choose the correct HTML element for the largest heading:",
     anser1: "<heading>",
     anser2: "<h6>",
-    anser3: "<head>",
-    anser4: "<h1>",
+    anser3: "<h1>",
+    anser4: "<head>",
     anserTrue: "<h1>",
   }),
   (q4 = {
     question: "What is the correct HTML element for inserting a line break?",
-    anser1: "<brake>",
+    anser1: "<br>",
     anser2: "<lb>",
     anser3: "<brk>",
-    anser4: "<br>",
+    anser4: "<brake>",
     anserTrue: "<br>",
   }),
   (q5 = {
     question: "HTML is a set of markup ___.",
     anser1: "sets",
     anser2: "attributes",
-    anser3: "none of the above",
-    anser4: "tags",
+    anser3: "tags",
+    anser4: "none of the above",
     anserTrue: "tags",
   }),
   (q6 = {
     question: "Which is used to open the document in new window ?",
-    anser1: '<a target="_top">Link</a>',
+    anser1: '<a target="_blank">Link</a>',
     anser2: '<a target="_new">Link</a>',
     anser3: '<a target="_parent">Link</a>',
-    anser4: '<a target="_blank">Link</a>',
+    anser4: '<a target="_top">Link</a>',
     anserTrue: '<a target="_blank">Link</a>',
   }),
   (q7 = {
@@ -59,9 +59,9 @@ const htmlQuestions = [
   (q8 = {
     question: "In which part of the HTML metadata is contained?",
     anser1: "body tag",
-    anser2: "html tag",
+    anser2: "head tag",
     anser3: "title tag",
-    anser4: "head tag",
+    anser4: "html tag",
     anserTrue: "head tag",
   }),
   (q9 = {
@@ -75,9 +75,9 @@ const htmlQuestions = [
   (q10 = {
     question: "Which defines the most important heading ?",
     anser1: "h8",
-    anser2: "h4",
+    anser2: "h1",
     anser3: "h6",
-    anser4: "h1",
+    anser4: "h4",
     anserTrue: "h1",
   }),
 ];
@@ -179,20 +179,23 @@ function addData(obj, count) {
 
     //add mainDiv to answers-area
     answersArea.appendChild(mainDiv)
-    
   }
   }
 }
-
+var choisArr = []
 //function to chesk
 function checkAnswer(rAnswer, count) {
 
   let anwers = document.getElementsByName("question");
   let chois
 
+  //adding the choises to an array
+
+  //ida kanet mkochia ajoutiha f choisArr
   for(const anwer of anwers) {
     if (anwer.checked) {
       chois = anwer.dataset.answer
+      choisArr.push(chois)
     }
   }
 
@@ -201,6 +204,10 @@ function checkAnswer(rAnswer, count) {
   }
   
 } 
+
+
+
+
 
 //change bullet
 function changeBullet() {
@@ -216,6 +223,8 @@ function changeBullet() {
 
 //showResults function
 function showResults(count) {
+
+  
   let results;
   if (currentIndex === count) {
     quizArea.remove();
@@ -245,8 +254,9 @@ function showResults(count) {
     quizApp.appendChild(buttenDiv)
     
     showRightAnswers.onclick = function () {
+      console.log(choisArr);
       showRightAnswers.remove();
-      show(ansersTru);
+      show(choisArr);
 
     //restart button
     let reSetDiv = document.createElement("div");
@@ -274,16 +284,28 @@ function show(arr) {
   //append truDiv to quizApp
   quizApp.appendChild(truDiv)
 
-  for (let i = 0; i < ansersTru.length; i++) {
+  for (let i = 0; i < choisArr.length; i++) {
 
     //create P
     let pAns = document.createElement('p')
+    pAns.className = "pAns"
     let pText = document.createTextNode(arr[i])
 
+    //add the true aanswers
     pAns.appendChild(pText)
-
     truDiv.appendChild(pAns)
-    
+  }
+  //############################### do a chack hear to see if the chois is in the ansersTru array 
+  //############################### and then color the true answers 
+  let pchoises = document.querySelectorAll(".pAns");
+  for (const pchois of pchoises) {
+    if (ansersTru.includes(pchois.innerText)) {
+      console.log(pchois.innerText);
+      console.log(typeof pchois);
+      pchois.style.backgroundColor = "green";
+    } else {
+      pchois.style.backgroundColor = "red";
+    }
   }
 }
 //valide function
