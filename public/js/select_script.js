@@ -1,11 +1,11 @@
 // Selection Questions CSS
-
 const cssQuestions = [
     q1 = {
         question: 'CSS stands for ______',
         anser1: 'Color Style Sheets',
         anser2: 'Cascade Sheets Style',
         anser3: 'Cascade Style Sheet',
+        anser4: 'Cascading Style Sheets',
         anserTrue: 'Cascading Style Sheets'
     },
     q2 = {
@@ -13,6 +13,7 @@ const cssQuestions = [
         anser1: '<CSS>',
         anser2: '<!DOCTYPE html>',
         anser3: '<script>',
+        anser4: '<style>',
         anserTrue: '<style>'
     },
     q3 = {
@@ -20,6 +21,7 @@ const cssQuestions = [
         anser1: 'the title section',
         anser2: 'the body section',
         anser3: 'None of the above',
+        anser4: 'the head section',
         anserTrue: 'the head section'
     },
     q4 = {
@@ -27,6 +29,7 @@ const cssQuestions = [
         anser1: 'styles',
         anser2: 'Font',
         anser3: 'class',
+        anser4: 'style',
         anserTrue: 'style'
     },
     q5 = {
@@ -34,6 +37,7 @@ const cssQuestions = [
         anser1: 'font-weight',
         anser2: 'font',
         anser3: 'None of the above',
+        anser4: 'font-size',
         anserTrue: 'font-size'
     },
     q6 = {
@@ -41,13 +45,15 @@ const cssQuestions = [
         anser1: 'padding-top',
         anser2: 'padding-left',
         anser3: 'padding-bottom',
-        anserTrue: 'padding-right'
+        anser4: 'padding-right',
+        anserTrue: 'padding-right',
     },
     q7 = {
         question: 'Which property is used to capitalize text or convert text to uppercase or lowercase letters ?',
         anser1: 'text-decoration',
         anser2: 'text-align',
         anser3: 'text-indent',
+        anser4: 'text-transform',
         anserTrue: 'text-transform'
     },
     q8 = {
@@ -55,20 +61,258 @@ const cssQuestions = [
         anser1: 'direction',
         anser2: 'color',
         anser3: 'word-spacing',
-        anserTrue: 'letter-spacing'
+        anser4: 'letter-spacing',
+        anserTrue: 'letter-spacing',
     },
     q9 = {
         question: 'Which property is used to set the background image of an element ?',
         anser1: 'background-position',
         anser2: 'background-repeat',
         anser3: 'background-color',
-        anserTrue: 'background-image'
+        anser4: 'background-image',
+        anserTrue: 'background-image',
     },
     q10 = {
         question: 'Which CSS framework is used to create a responsive design?',
         anser1: 'larawell',
         anser2: 'django',
         anser3: 'rails',
+        anser4: 'bootstrap',
         anserTrue: 'bootstrap'
     },
 ]
+
+//selecting elements
+let countSpan = document.querySelector(".count span");
+let spans = document.querySelector(".spans");
+let quizArea = document.querySelector(".quiz-area");
+let answersArea = document.querySelector(".answers-area") ;
+let submit = document.querySelector(".submit-button");
+let bullets = document.querySelector(".bullets");
+let resultsContainer = document.querySelector(".results");
+let quizApp = document.querySelector(".quiz-app");
+
+
+//set 
+let questCount = cssQuestions.length;
+let questionIndex = 0;
+let score = 0;
+let choisArr = []
+
+//get
+let trueAnsArr = []
+for (const cssQuestion  of cssQuestions) {
+    trueAnsArr.push(cssQuestion.anserTrue)
+}
+
+
+//adding the question count
+countSpan.innerHTML = questCount
+
+//########################################### "FUNCTIONS"
+
+//adding balls
+function bulls(numb) {
+
+    for (let i = 0; i < numb; i++) {
+
+        //create span
+        let span = document.createElement("span");
+        if (i === 0) {
+            span.className = "on"
+        }
+        
+        //adding spans to the spans's div
+        spans.appendChild(span)
+        
+    }
+}
+
+//adding questions and answers
+function addData(obj , numb) {
+
+    if (questionIndex < numb ) {
+
+        //the question
+        let lable = document.createElement("lable");
+        //lable.htmlFor = `asnwer${questionIndex}`;
+
+        let h2 = document.createElement("h2");
+        let h2text = document.createTextNode(obj.question);
+
+        h2.appendChild(h2text);
+
+        lable.appendChild(h2);
+
+        quizArea.appendChild(lable);
+
+
+        let select = document.createElement("select");
+        select.id = `answers_${questionIndex + 1}`;
+        select.name = `answers_${questionIndex + 1}`
+
+        answersArea.appendChild(select)
+
+        //the answers
+        for (let i = 1; i <= 4; i++) {
+            
+            let option = document.createElement("option");
+            option.value = `anser${i}`;
+
+            let optionText = document.createTextNode(obj[`anser${i}`])
+
+            option.appendChild(optionText)
+
+            select.appendChild(option)
+        }
+    }
+}
+
+function submitFunction() {
+
+    //check the answer
+    check(cssQuestions[questionIndex], questionIndex);
+
+    quizArea.innerHTML = " ";
+    answersArea.innerHTML = " ";
+
+    questionIndex++;
+    //color the next span bull
+    nextSpan();
+
+    //adding the next question
+    addData(cssQuestions[questionIndex] , questCount);
+
+    //sow score
+    showScore()
+
+
+
+}
+
+//color the next span bull
+function nextSpan() {
+    let bulspans = document.querySelectorAll(".bullets .spans span");
+    let bullArray = Array.from(bulspans);
+    bullArray.forEach((span, index) => {
+        //index: get the index of all the elements of the array
+        //span: select all the item (span) in the array
+      if (questionIndex === index) {
+        span.className = "on";
+      }
+    })
+
+}
+
+//check the answer
+function check(obj, numb) {
+
+    //selecting the value
+    let qSelectValue = document.querySelector(`#answers_${numb + 1}`).value;
+    choisArr.push(obj[`${qSelectValue}`]);
+
+    //check the answer
+    if (obj[`${qSelectValue}`] === obj.anserTrue) {
+        score++;
+    }
+
+}
+
+//sow score
+function showScore() {
+
+    if (questionIndex === questCount) {
+
+        quizArea.remove();
+        answersArea.remove();
+        submit.remove();
+        bullets.remove();
+
+        let results
+
+        if (score > questCount / 2 && score < questCount) {
+          results = `<span class="good">${score}</span>`
+        } else if (score === questCount) {
+          results = `<span class="perfect">${score}</span>`
+        } else {
+          results = `<span class="bad">${score}</span>`
+        }
+        resultsContainer.innerHTML = results
+        
+        
+        //show answers
+        let buttenDiv = document.createElement('div');
+        buttenDiv.classList = "show-ans";
+
+        let showRightAnswers = document.createElement('button');
+        showRightAnswers.className = "btn_Show";
+        showRightAnswers.innerHTML = "Show Right Answers";
+
+        buttenDiv.appendChild(showRightAnswers)
+
+        quizApp.appendChild(buttenDiv)
+
+        showRightAnswers.onclick = function () {
+            showRightAnswers.remove();
+            show(choisArr);
+
+            //restart button
+            let reSetDiv = document.createElement("div");
+            reSetDiv.className = "reSetDiv";
+      
+            let restart = document.createElement('button');
+            restart.className = "submit-button";
+            restart.innerText = "restart"
+
+            reSetDiv.appendChild(restart);
+            quizApp.appendChild(reSetDiv);
+      
+            restart.onclick = function () {
+                location.reload();
+            }
+
+        }
+
+    }
+}
+
+function show(arr) {
+
+    let truDiv = document.createElement('div');
+    truDiv.className = "truAns";
+    
+    quizApp.appendChild(truDiv)
+
+    for (let i = 0; i < choisArr.length; i++) {
+
+        //create P
+        let pAns = document.createElement('p')
+        pAns.className = "pAns"
+        let pText = document.createTextNode(arr[i])
+    
+        //add the true aanswers
+        pAns.appendChild(pText)
+        truDiv.appendChild(pAns)
+    }
+
+    let pchoises = document.querySelectorAll(".pAns");
+
+    for (const pchois of pchoises) {
+        if (trueAnsArr.includes(pchois.innerText)) {
+          pchois.style.backgroundColor = "green";
+        } else {
+          pchois.style.backgroundColor = "red";
+        }
+      }
+
+}
+
+
+//trigger functions
+bulls(questCount);
+
+//adding date
+addData(cssQuestions[questionIndex] , questCount);
+
+//submit
+submit.addEventListener("click", submitFunction);

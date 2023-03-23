@@ -1,0 +1,18 @@
+.quiz-app .answers-area select {
+    /* border: none; */
+    width: 100%;
+    padding: 10px;
+}
+.quiz-app .answers-area select:focus {
+    outline: none;
+}
+.quiz-app .answers-area  option {
+    cursor: pointer;
+    font-weight: bold;
+    color: #777;
+    font-size: 14px;
+    margin-left: 5px;
+    position: relative;
+    top: -1px;
+    padding: 10px;
+}

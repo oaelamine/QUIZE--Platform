@@ -182,6 +182,7 @@ function addData(obj, count) {
   }
   }
 }
+
 var choisArr = []
 //function to chesk
 function checkAnswer(rAnswer, count) {
@@ -221,6 +222,8 @@ function changeBullet() {
   })
 }
 
+
+
 //showResults function
 function showResults(count) {
 
@@ -254,25 +257,24 @@ function showResults(count) {
     quizApp.appendChild(buttenDiv)
     
     showRightAnswers.onclick = function () {
-      console.log(choisArr);
       showRightAnswers.remove();
       show(choisArr);
 
-    //restart button
-    let reSetDiv = document.createElement("div");
-    reSetDiv.className = "reSetDiv";
+      //restart button
+      let reSetDiv = document.createElement("div");
+      reSetDiv.className = "reSetDiv";
 
-    let restart = document.createElement('button');
-    restart.className = "submit-button";
-    restart.innerText = "restart"
+      let restart = document.createElement('button');
+      restart.className = "submit-button";
+      restart.innerText = "restart"
 
-    reSetDiv.appendChild(restart);
-    quizApp.appendChild(reSetDiv);
+      reSetDiv.appendChild(restart);
+      quizApp.appendChild(reSetDiv);
 
-    restart.onclick = function () {
-        location.reload();
+      restart.onclick = function () {
+          location.reload();
+      }
     }
-  }
   }
 }
 
@@ -300,8 +302,6 @@ function show(arr) {
   let pchoises = document.querySelectorAll(".pAns");
   for (const pchois of pchoises) {
     if (ansersTru.includes(pchois.innerText)) {
-      console.log(pchois.innerText);
-      console.log(typeof pchois);
       pchois.style.backgroundColor = "green";
     } else {
       pchois.style.backgroundColor = "red";
