@@ -1,17 +1,36 @@
-.quiz-area {
+.quiz-app {
+    padding: 10px 15px;
+}
+.quiz-app .quiz-area {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
+    /* gap: 20px; */
+    row-gap: 40px;
+    column-gap: 0px;
+    margin-top: 0;
+    padding: 0;
 }
 
 .quiz-area .box {
-    display: flex; 
-	align-items: center; 
-	justify-content: center;
+    justify-self: center;
+    width: fit-content;
+    border-radius: 10px;
 }
 .quiz-area .box img {
     width: 200px;
     box-shadow: 0 0 10px #ddd;
 }
+
+.quiz-area .true {
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+
+}
+.quiz-area .false {
+    background-image: linear-gradient(to top left, #fd424b, #ffcb03);
+
+}
+
+
+
 

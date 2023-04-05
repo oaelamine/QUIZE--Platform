@@ -6,7 +6,6 @@ let curent, other;
 let imgCount = 5;
 
 //create the box and the imgs
-//window.onload = 
 function create() {
     let imgs = [];
 
@@ -72,7 +71,7 @@ allImg.forEach(letter => {
 //drag Functions
 
 function dragStart() {
-    curent = this;;
+    curent = this;
 }
 
 function dragOver(e) {
@@ -99,13 +98,13 @@ function dragEnd() {
     let currentID = curent.id;
     let otherID = other.id;
 
+
+    //swich the src
     [curent.src, other.src] = [otherImg, currentImg];
+
+    //swich the id
     [curent.id, other.id] = [otherID, currentID]
 
-    //ree adding id
-/*     allImg.forEach(letter => {
-        letter.id = `${letter.src.slice(-5, -4)}i`
-    }) */
 }
 
 
@@ -138,10 +137,10 @@ function submitFunction() {
     for (const img of allImg) {
 
         if (parseInt(img.id) == parseInt(img.parentElement.id)) {
-            img.parentElement.style.backgroundColor = "green";
+            img.parentElement.classList.add('true');
 
         } else {
-            img.parentElement.style.backgroundColor = "red";
+            img.parentElement.classList.add('false')
 
         }
     }
@@ -162,5 +161,4 @@ function submitFunction() {
 
 
 //addEventListners
-
 submit.addEventListener('click', submitFunction)

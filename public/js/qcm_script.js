@@ -112,7 +112,7 @@ for(const ques of htmlQuestions) {
 
 //FUNCTIONS
 //bullet function
-function bull(numb) {
+function pagination(numb) {
   countSpan.innerHTML = numb
 
   //create the bullets
@@ -302,9 +302,9 @@ function show(arr) {
   let pchoises = document.querySelectorAll(".pAns");
   for (const pchois of pchoises) {
     if (ansersTru.includes(pchois.innerText)) {
-      pchois.style.backgroundColor = "green";
+      pchois.style.backgroundImage = "linear-gradient(to top left, #39b385, #9be15d)";
     } else {
-      pchois.style.backgroundColor = "red";
+      pchois.style.backgroundImage = "linear-gradient(to top left, #fd424b, #ffcb03)";
     }
   }
 }
@@ -337,7 +337,7 @@ function valid() {
 
 //trigger the functions
 //create bullets
-bull(questionCount)
+pagination(questionCount)
 
 //add questions
 addData(htmlQuestions[currentIndex], questionCount)

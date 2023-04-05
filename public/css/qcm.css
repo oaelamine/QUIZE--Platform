@@ -135,4 +135,11 @@
 .truAns p {
     text-align: center;
     margin-bottom: 20px;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
 }
+
+

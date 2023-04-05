@@ -27,7 +27,7 @@ function submitFunction() {
 
     //chesk the aners
     for ( const input of inputs ) {
-        if (input.value === input.dataset.text) {
+        if (input.value.toLowerCase() === input.dataset.text.toLowerCase()) {
             input.style.color = "green";
             score++
         } else {
