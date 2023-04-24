@@ -173,10 +173,14 @@ function submitFunction() {
     //check the answer
     check(cssQuestions[questionIndex], questionIndex);
 
+
+    //clear the divs
     quizArea.innerHTML = " ";
     answersArea.innerHTML = " ";
 
+    //increace the index
     questionIndex++;
+
     //color the next span bull
     nextSpan();
 
@@ -185,18 +189,14 @@ function submitFunction() {
 
     //sow score
     showScore()
-
-
-
 }
 
-//color the next span bull
+
+//color the next span paginathion
 function nextSpan() {
     let bulspans = document.querySelectorAll(".bullets .spans span");
     let bullArray = Array.from(bulspans);
     bullArray.forEach((span, index) => {
-        //index: get the index of all the elements of the array
-        //span: select all the item (span) in the array
       if (questionIndex === index) {
         span.className = "on";
       }
@@ -207,8 +207,9 @@ function nextSpan() {
 //check the answer
 function check(obj, numb) {
 
-    //selecting the value
+    //selecting the selected value
     let qSelectValue = document.querySelector(`#answers_${numb + 1}`).value;
+    console.log(qSelectValue);
     choisArr.push(obj[`${qSelectValue}`]);
 
     //check the answer
@@ -290,7 +291,7 @@ function show(arr) {
         pAns.className = "pAns"
         let pText = document.createTextNode(arr[i])
     
-        //add the true aanswers
+        //add the answers
         pAns.appendChild(pText)
         truDiv.appendChild(pAns)
     }

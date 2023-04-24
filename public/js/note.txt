@@ -1,0 +1,5 @@
+QCM:
+- pagination function: create spans 3la hsab le nb de question ,
++ add class "on" 3la la premiére span.
+
+- function addData(obj, questCount): 

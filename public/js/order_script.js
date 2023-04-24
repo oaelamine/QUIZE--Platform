@@ -17,7 +17,7 @@ function create() {
 
 
     //random
-    imgs =  random(imgs);
+    imgs = random(imgs);
 
 
 
@@ -38,7 +38,7 @@ function create() {
         img.addEventListener('dragstart', dragStart);
         img.addEventListener('dragover', dragOver);
         img.addEventListener('dragenter', dragEnter);
-        img.addEventListener('dragleave', dragLeave);
+        //img.addEventListener('dragleave', dragLeave);
         img.addEventListener('drop', dragDrop);
         img.addEventListener('dragend', dragEnd);
         
@@ -62,8 +62,8 @@ let allImg = document.querySelectorAll("img");
 let quizApp = document.querySelector(".quiz-app")
 
 
-allImg.forEach(letter => {
-    letter.id = `${letter.src.slice(-5, -4)}i`
+allImg.forEach(img => {
+    img.id = `${img.src.slice(-5, -4)}i`
 })
 
 
@@ -75,14 +75,15 @@ function dragStart() {
 }
 
 function dragOver(e) {
-    e.preventDefault();
+    e.preventDefault(); //bache ne9der nhatt fo9ha o yetbadlou
 }
 
 function dragEnter(e) {
+    console.log(e);
     e.preventDefault();
 }
 
-function dragLeave() {}
+//function dragLeave() {}
 
 function dragDrop() {
     other = this;

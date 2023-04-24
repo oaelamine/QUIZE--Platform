@@ -100,6 +100,7 @@ let currentIndex = 0;
 let rightAnswers = 0;
 let countdownInterval;
 let questionCount = htmlQuestions.length
+let choisArr = [];
 
 //celect the right answers
 let ansersTru = []
@@ -183,14 +184,12 @@ function addData(obj, count) {
   }
 }
 
-var choisArr = []
+
 //function to chesk
-function checkAnswer(rAnswer, count) {
+function checkAnswer(rAnswer) { //checkAnswer(treuanswer)
 
   let anwers = document.getElementsByName("question");
-  let chois
-
-  //adding the choises to an array
+  let chois;
 
   //ida kanet mkochia ajoutiha f choisArr
   for(const anwer of anwers) {
@@ -199,6 +198,7 @@ function checkAnswer(rAnswer, count) {
       choisArr.push(chois)
     }
   }
+  console.log(chois);
 
   if (rAnswer === chois) {
     rightAnswers++;    
@@ -211,7 +211,7 @@ function checkAnswer(rAnswer, count) {
 
 
 //change bullet
-function changeBullet() {
+function changePagi() {
 
   let bulspans = document.querySelectorAll(".bullets .spans span");
   let bullArray = Array.from(bulspans);
@@ -318,7 +318,7 @@ function valid() {
   currentIndex++
 
   //check the answer
-  checkAnswer(treuanswer, questionCount)
+  checkAnswer(treuanswer) //questionCount
 
   //remouve old question
   quizArea.innerHTML = '';
@@ -328,7 +328,7 @@ function valid() {
   addData(htmlQuestions[currentIndex], questionCount)
 
   //change bullet
-  changeBullet();
+  changePagi();
 
   //results
   showResults(questionCount);
